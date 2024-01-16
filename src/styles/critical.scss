@@ -1,0 +1,152 @@
+/*fonts*/
+@mixin font-face($style-name, $file:$style-name, $weight:normal, $style:normal) {
+    $filepath: "/fonts/" + $file;
+    @font-face {
+        font-family: quote($style-name);
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'),
+        url($filepath + ".woff") format('woff'),
+        url($filepath + ".ttf")  format('truetype'),
+        url($filepath + ".svg#" + $style-name + "") format('svg');
+        font-weight: $weight;
+        font-style: $style;
+    }
+}
+
+@include font-face("Montserrat", "Montserrat-Regular", 400, normal);
+@include font-face("Montserrat", "Montserrat-Medium", 500, normal);
+@include font-face("Montserrat", "Montserrat-Semibold", 600, normal);
+@include font-face("Montserrat", "Montserrat-Bold", 700, normal);
+@include font-face("Moul", "Moul-Regular", 400, normal);
+
+
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/UA-BRAND.eot");
+    src: url("/fonts/UA-BRAND.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Regular.woff") format("woff"), url("/fonts/UA-BRAND.ttf") format("truetype"), url("/fonts/UA-BRAND.svg#Montserrat") format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/UA-BRAND.eot");
+    src: url("/fonts/UA-BRAND.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Medium.woff") format("woff"), url("/fonts/UA-BRAND.ttf") format("truetype"), url("/fonts/UA-BRAND.svg#Montserrat") format("svg");
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("/fonts/UA-BRAND.eot");
+    src: url("/fonts/UA-BRAND.eot?#iefix") format("embedded-opentype"), url("../fonts/Roboto-Bold.woff") format("woff"), url("/fonts/UA-BRAND.ttf") format("truetype"), url("/fonts/UA-BRAND.svg#Montserrat") format("svg");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Aleo";
+    src: url("/fonts/UA-BRAND.eot");
+    src: url("/fonts/UA-BRAND.eot?#iefix") format("embedded-opentype"), url("../fonts/Aleo-Regular.woff") format("woff"), url("/fonts/UA-BRAND.ttf") format("truetype"), url("/fonts/UA-BRAND.svg#Montserrat") format("svg");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Aleo";
+    src: url("/fonts/UA-BRAND.eot");
+    src: url("/fonts/UA-BRAND.eot?#iefix") format("embedded-opentype"), url("../fonts/Aleo-Bold.woff") format("woff"), url("/fonts/UA-BRAND.ttf") format("truetype"), url("/fonts/UA-BRAND.svg#Montserrat") format("svg");
+    font-weight: 700;
+    font-style: normal;
+}
+:root {
+    --color-white: #fff;
+    --color-black: #212121;
+    --color-primary:#131759;
+    --color-primary-second:#D0D6FF;
+    --color-blue-text:#1C217D;
+    --color-text:#747D8C;
+    --color-category:#F7FBFF;
+    --color-blue-button:#606CD6;
+    --color-gradient: linear-gradient(87deg, #0E113F -9.77%, #202794 91.99%);
+    --color-gradient-vertical: linear-gradient(5deg, #0E113F 14.47%, #202794 95.11%);
+    --color-grey: #CDCDCD;
+    --color-hour: rgba(33, 33, 33, 0.50);
+    --color-grey-rba:rgba(205, 205, 205, 0.40);
+
+    --Roboto: 'Roboto', sans-serif;
+    --Aleo: 'Aleo', sans-serif;
+}
+
+*,*:before,
+*:after {
+    box-sizing: border-box;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+*,body,html {
+    -webkit-text-size-adjust: none;
+    -webkit-appearance: none;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+button{
+    border:none;
+}
+mark{
+    -webkit-text-fill-color: initial;
+    text-fill-color: transparent;
+    background: none;
+}
+
+.img{
+    &.contain img{
+        object-fit: contain;
+    }
+    & > img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+    &:hover{
+        text-decoration: none;
+    }
+}
+button{
+    background: transparent;
+}
+h1{
+    margin: 0;
+}
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+
+}
+@media only screen and (max-width: 1024px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 6px;
+    }
+}
+
+@media only screen and (max-width: 666px) {
+    html {
+        font-size: 10px;
+    }
+}
