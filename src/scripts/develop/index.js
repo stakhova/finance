@@ -17,10 +17,6 @@ const validateForm = (form, func) => {
         return this.optional(element) || /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,62}$/i.test(value);
     }, "Please enter correct email");
 
-    // $.validator.addMethod("goodPhone", function (value, element) {
-    //     // return this.optional(element) || /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/i.test(value);
-    //     return this.optional(element) || /^[+]*[0-9]{15,20}$/g.test(value);
-    // }, "Please enter correct phone number");
 
     form.validate({
         rules: {
@@ -135,10 +131,87 @@ function search() {
 
 }
 
+function accordion(){
+    $(document).on('click', '.accordion__header', function (){
+        let wrap =  $(this).closest('.accordion__item');
+        if(wrap.hasClass('open')){
+            wrap.removeClass('open')
+        }else{
+            wrap.addClass('open')
+        }
+    })
+}
+function wrapSlider(){
+    let itemsTrend = $('.list__item:first-child .post__item')
+    let itemsNewest = $('.list__item:last-child .post__item')
+    $('.posts__slider-trend .swiper-wrapper').append(itemsTrend)
+    $('.posts__slider-newest .swiper-wrapper').append(itemsNewest)
+    const trend = new Swiper('.posts__slider-trend', {
+        slidesPerView: 1,
+        spaceBetween: 40,
+        centeredSlides: false,
+        loop: true,
+
+        pagination: {
+            el: '.trend__pagination',
+            clickable: true,
+        },
+
+
+    });
+}
+
+function addClassAccordion(){
+    $('.accordion__item').each(function (index){
+        if (index == 0 ) {
+            $(this).addClass('open');
+        }
+        console.log($(this))
+        if (index % 2 !== 0) {
+            $(this).addClass('reverse');
+        }
+    })
+
+}
+
+let page = 1;
+function featuredShow() {
+    $(document).on('click', '.featured__button', function () {
+        page++;
+        $(this).hide()
+        let category = $(this).closest('.featured').data('category')
+
+        console.log()
+
+
+        let obj = {action:'show-related', page:page, category }
+        ajaxSend(obj, '/wp-admin/admin-ajax.php', addNewRelated);
+    });
+};
+
+function addNewRelated(res){
+    $('.featured__block-related').append(res)
+}
+
 
 $(document).ready(function(){
     $('.header__burger').on('click', openMenu);
     search()
+    accordion();
+    featuredShow();
+    // wrapSlider()
+
+    let formFooter = $('.footer__form');
+    validateForm(formFooter, function () {
+        sendForm(formFooter, '/wp-admin/admin-ajax.php');
+
+    });
+    let formControl = $('.control__form-content');
+    validateForm(formControl, function () {
+        sendForm(formControl, '/wp-admin/admin-ajax.php');
+
+    });
+    addClassAccordion()
 });
 
 $(window).load(function(){
